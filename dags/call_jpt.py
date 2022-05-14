@@ -1,4 +1,3 @@
-pip install 'apache-airflow-providers-papermill'
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.providers.papermill.operators.papermill import PapermillOperator
