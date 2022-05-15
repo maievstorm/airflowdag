@@ -36,6 +36,8 @@ with DAG(
     tags=['example'],
 ) as dag:
     # [START howto_operator_spark_submit]
+	os.environ['SPARK_HOME'] = '/dags_airflowdag/dags/spark-3.1.1-bin-hadoop2.7'
+    sys.path.append(os.path.join(os.environ['SPARK_HOME'], 'bin'))
     
     python_submit_job = SparkSubmitOperator(
         application="/dags_airflowdag/dags/spark-3.1.1-bin-hadoop2.7/examples/src/main/python/pi.py", task_id="python_job"
