@@ -6,8 +6,7 @@ from pyspark.sql.functions import datediff, col, abs
 if __name__ == "__main__":
     spark = SparkSession\
         .builder\
-		.master("spark://dpaspark-master-svc:7077")\
-        .appName("extract_and_load")\
+		.appName("extract_and_load")\
         .getOrCreate()
 
     csv_df = spark.read.format("csv").option("header", "true").load("/dags_airflowdag/dags/01_data/csv/previous_employees_by_job_title.csv")

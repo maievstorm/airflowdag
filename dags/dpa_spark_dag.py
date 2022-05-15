@@ -18,14 +18,14 @@ with DAG(
     tags=['hung'],
 ) as dag:
     # [START howto_operator_spark_submit]
-    #os.environ['SPARK_HOME'] = '/workspace/example-cassandra-etl-with-airflow-and-spark/spark-3.0.1-bin-hadoop2.7'
-    #sys.path.append(os.path.join(os.environ['SPARK_HOME'], 'bin'))
+    os.environ['SPARK_HOME'] = '/dags_airflowdag/dags/spark-3.0.1-bin-hadoop2.7'
+    sys.path.append(os.path.join(os.environ['SPARK_HOME'], 'bin'))
 
     load_and_write = BashOperator(
         task_id="load_and_write_job",
         bash_command='spark-submit \
             --packages com.datastax.spark:spark-cassandra-connector_2.12:3.0.1 \
-            --properties-file /workspace/example-cassandra-etl-with-airflow-and-spark/properties.conf \
+            --properties-file /dags_airflowdag/dags/00_script/conf/properties.conf \
             /dags_airflowdag/dags/00_script/py/extract_and_load.py'
     )
 
@@ -33,7 +33,7 @@ with DAG(
         task_id="etl_job",
         bash_command='spark-submit \
             --packages com.datastax.spark:spark-cassandra-connector_2.12:3.0.1 \
-            --properties-file /workspace/example-cassandra-etl-with-airflow-and-spark/properties.conf \
+            --properties-file /dags_airflowdag/dags/00_script/conf/properties.conf \
             /dags_airflowdag/dags/00_script/py/etl.py'
     )
 
