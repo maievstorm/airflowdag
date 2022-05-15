@@ -7,8 +7,7 @@ from pyspark.sql.functions import datediff, col, abs
 if __name__ == "__main__":
     spark = SparkSession\
         .builder\
-		.master("spark://dpaspark-master-svc:7077")\
-        .appName("etl")\
+		.appName("etl")\
         .getOrCreate()
 
     database = spark.conf.get("spark.database.name")
